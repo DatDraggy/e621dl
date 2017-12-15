@@ -8,12 +8,10 @@ import default
 import re
 from types import IntType, BooleanType
 from urllib import FancyURLopener
+import support as support
 import cPickle as pickle
 import os
 from lib.version import VERSION
-
-class SpoofOpen(FancyURLopener):
-    version = 'e621dl ' + VERSION + ' (by wwyaiykycnf)'
 
 def get_verbosity_level():
 
@@ -152,3 +150,15 @@ def validate_config(c):
         log.error("could not parse config file")
         log.error(ex_msg)
         return False
+
+CONFIG_FILE = 'config.txt' # modify to use different config file
+# this flag will be set to true if a fatal error occurs in pre-update
+EARLY_TERMINATE = False
+
+# read the config file.  if not found, create a new one
+EARLY_TERMINATE |= not os.path.isfile(CONFIG_FILE)
+CONFIG = support.get_configfile(CONFIG_FILE)
+EARLY_TERMINATE |= not support.validate_config(CONFIG)
+		
+class SpoofOpen(FancyURLopener):
+    version = 'e621dl ' + VERSION + ' (by ' + CONFIG['username'] + ')'

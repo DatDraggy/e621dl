@@ -13,7 +13,8 @@ CONFIG_FILE = {
     'last_run':     datetime.now().strftime(DATETIME_FMT),
     'tag_file':     "tags.txt",
     'parallel_downloads':   8,
-    'create_subdirectories': False
+    'create_subdirectories': False,
+    'username':    "your-name"
 }
 
 LOGGER_FMT = "%(name)-11s %(levelname)-8s %(message)s"

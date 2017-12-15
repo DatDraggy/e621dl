@@ -1,15 +1,26 @@
 #!/usr/bin/env python
 #pylint: disable=missing-docstring,invalid-name,too-many-public-methods
 import logging
+import lib.support as support
 from urllib import FancyURLopener
 from multiprocessing import Pool, Manager, Process
 from time import sleep
 from itertools import repeat
 import sys
+import os.path
 from lib.version import VERSION
 
+CONFIG_FILE = 'config.txt' # modify to use different config file
+# this flag will be set to true if a fatal error occurs in pre-update
+EARLY_TERMINATE = False
+
+# read the config file.  if not found, create a new one
+EARLY_TERMINATE |= not os.path.isfile(CONFIG_FILE)
+CONFIG = support.get_configfile(CONFIG_FILE)
+EARLY_TERMINATE |= not support.validate_config(CONFIG)
+
 class SpoofOpen(FancyURLopener):
-    version = 'e621dl ' + VERSION + ' (by wwyaiykycnf)'
+    version = 'e621dl ' + VERSION + ' (by ' + CONFIG['username'] + ')'
 
 
 def update_progress(progress):
