@@ -18,7 +18,7 @@ CONFIG_FILE = {
 }
 
 LOGGER_FMT = "%(name)-11s %(levelname)-8s %(message)s"
-MAX_RESULTS = 100
+MAX_RESULTS = 320
 TAG_FILE = '''# Instructions:
 #
 # Add tags/artists to download to this file, one group per line.  Any tag

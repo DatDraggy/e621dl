@@ -101,8 +101,11 @@ if __name__ == '__main__':
                 # continue accumulating if found == max, else stop accumulation
                 accumulating = len(links_found) == default.MAX_RESULTS
                 current_page += 1
-
-        LOG.info('%d new uploads tagged: %s', len(potential_downloads), line)
+								
+            #Here start downloading found links, then sleep for 1 sec if time is <1 sec
+            #then set potential_downloads to empty again
+						
+            LOG.info('%d new uploads tagged: %s', len(potential_downloads), line)
 
         if len(potential_downloads) > 0:
 
