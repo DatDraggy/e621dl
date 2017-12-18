@@ -24,7 +24,7 @@ def get_posts(search_term, uploaded_after, page_num, max_results):
     log = logging.getLogger('e621_api')
     log.debug('search url = ' + request)
     response = SPOOF.open(request)
-    if response.getcode() == 429
+    while response.getcode() == 429
         time.sleep(response.getheader('Retry-After'))
 
     results = loads(requestFin.read().decode())
