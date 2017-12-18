@@ -23,7 +23,9 @@ def get_posts(search_term, uploaded_after, page_num, max_results):
 
     log = logging.getLogger('e621_api')
     log.debug('search url = ' + request)
-    results = loads(SPOOF.open(request).read().decode())
+		requestFin = SPOOF.open(request)
+		#Check for header and code here and timeout if header is 429 for Retry-After: X seconds
+    results = loads(requestFin.read().decode())
 
     uploads = []
     for post in results:
