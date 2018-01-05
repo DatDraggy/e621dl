@@ -3,6 +3,7 @@
 from json import loads
 from support import SpoofOpen
 from collections import namedtuple
+import time
 import logging
 
 UPLOAD = namedtuple('Upload', 'id url md5 ext')
