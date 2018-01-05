@@ -28,6 +28,7 @@ def get_posts(search_term, uploaded_after, page_num, max_results):
     uploads = []
     for post in results:
         uploads.append(UPLOAD(post['id'], post['file_url'], post['md5'], post['file_ext']))
+    time.sleep(1)
     return uploads
 
 def download(url, filename):
